@@ -14,7 +14,7 @@ import NotFoundPage from './containers/404';
 const AnimatedSwitch = withRouter(({ location }) => (
     <TransitionGroup>
       <CSSTransition 
-        key={location.key} 
+        key={location.pathname.includes('/users/') ? undefined : location.key} 
         classNames="fade" 
         timeout={250}
       >
