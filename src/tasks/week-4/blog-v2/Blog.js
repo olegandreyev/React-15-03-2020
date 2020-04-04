@@ -1,4 +1,6 @@
 import React from 'react'
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { withRouter } from 'react-router-dom'
 import './blog-v2.css'
 import { Container, Header, Menu } from 'semantic-ui-react'
 import { BrowserRouter as Router, Switch, NavLink, Route } from 'react-router-dom';
@@ -8,6 +10,25 @@ import UsersPage from './containers/UsersPage';
 import AlbumsPage from './containers/AlbumsPage';
 import UserPage from './containers/UserPage';
 import NotFoundPage from './containers/404';
+
+const AnimatedSwitch = withRouter(({ location }) => (
+    <TransitionGroup>
+      <CSSTransition 
+        key={location.key} 
+        classNames="fade" 
+        timeout={250}
+      >
+        <Switch location={location}>
+            <Route path='/' exact component={HomePage} />
+            <Route path='/posts' exact component={PostsPage} />
+            <Route path='/users' exact component={UsersPage} />
+            <Route path='/users/:userId' component={UserPage} />
+            <Route path='/albums' exact component={AlbumsPage} />
+            <Route path='*' component={NotFoundPage} />
+        </Switch>
+      </CSSTransition>
+    </TransitionGroup>
+  ));
 
 export default function Blog() {
     return (
@@ -21,26 +42,7 @@ export default function Blog() {
                     <NavLink to='/users' className='item' activeClassName='active-nav'>Users</NavLink>
                     <NavLink to='/albums' className='item' activeClassName='active-nav'>Albums</NavLink>
                 </Menu>
-                <Switch>
-                    <Route path='/' exact>
-                        <HomePage />
-                    </Route>
-                    <Route path='/posts' exact>
-                        <PostsPage />
-                    </Route>
-                    <Route path='/users' exact>
-                        <UsersPage />
-                    </Route>
-                    <Route path='/users/:userId'>
-                        <UserPage />
-                    </Route>
-                    <Route path='/albums'>
-                        <AlbumsPage />
-                    </Route>
-                    <Router path='*'>
-                        <NotFoundPage />
-                    </Router>
-                </Switch>
+                <AnimatedSwitch />
             </Router>
         </Container>
     )

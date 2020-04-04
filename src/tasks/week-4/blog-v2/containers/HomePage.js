@@ -1,8 +1,12 @@
 import React from 'react'
-import { Header } from 'semantic-ui-react'
+import { Header, Container } from 'semantic-ui-react'
 
-export default function HomePage() {
+ function HomePage() {
     return (
-       <Header>Welcome to the BlogV2</Header>
+        <Container className='page'>
+            <Header>Welcome to the BlogV2</Header>
+       </Container>
     )
 }
+
+export default HomePage

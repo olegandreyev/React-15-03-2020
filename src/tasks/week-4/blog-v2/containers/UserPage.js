@@ -12,16 +12,13 @@ export default function UserPage() {
     const [user, isFetching] = useData(`/users/${userId}`, null)
     const [ albums ] = useData(`/users/${userId}/albums`, []);
 
-    if (isFetching || !user) return (
-        <Container className='page'>
-            <Dimmer active inverted><Loader /></Dimmer>
-        </Container>
-    )
     return (
         <Container className='page'>
-            <Grid columns={2}>
-                <Grid.Column>
-                    <Card>
+            <Dimmer active={isFetching || !user} inverted><Loader /></Dimmer>
+            {user &&
+            <Grid>
+                <Grid.Column width={6}>
+                    <Card fluid>
                         <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} />
                         <Card.Content>
                         <Card.Header>{user.name}</Card.Header>
@@ -49,7 +46,7 @@ export default function UserPage() {
                     </Card.Content>
                 </Card>
                 </Grid.Column>
-                <Grid.Column>
+                <Grid.Column  width={10}>
                     <Switch>
                         <Route exact path={path}>
                             <Header as='h3'>Select a album.</Header>
@@ -63,8 +60,7 @@ export default function UserPage() {
                     </Switch>
                 </Grid.Column>
             </Grid>
-          
-            
+            }
         </Container>
     )
 }

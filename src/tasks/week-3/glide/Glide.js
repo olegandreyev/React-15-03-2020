@@ -11,6 +11,10 @@ export default class Glide extends Component {
         this.glider = null;
     }
 
+    static defaultProps = {
+        bullets: true
+    }
+
     componentDidMount() {
         this.glider = new GlideJs(this.slider.current, this.props.options).mount()
     }
@@ -26,7 +30,7 @@ export default class Glide extends Component {
     }
 
     render() {
-        const { children } = this.props;
+        const { children, bullets } = this.props;
         return (
             <div ref={this.slider} className="glide">
                 <div className="glide__track" data-glide-el="track">
@@ -38,9 +42,11 @@ export default class Glide extends Component {
                     <button className="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
                     <button className="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
                 </div>
+                {bullets &&
                 <div className="glide__bullets" data-glide-el="controls[nav]">
                 {children.map((_, i) => <button className="glide__bullet" data-glide-dir={`=${i}`}></button> )}
                 </div>
+                }
             </div>
         )
     }

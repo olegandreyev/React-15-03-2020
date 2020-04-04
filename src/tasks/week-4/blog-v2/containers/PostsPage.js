@@ -10,7 +10,7 @@ export default function PostsPage() {
     return (
         <Container className='page'>
             <Dimmer active={isFetching} inverted>
-                <Loader>Loading...</Loader>
+                <Loader></Loader>
             </Dimmer>
             <Item.Group className='posts'>
                 {posts.map(post => <PostItem key={post.id} post={post} />)}
