@@ -1,6 +1,6 @@
 import React, { useState, useCallback} from 'react'
-import connect from '../hoc/connect';
-import { addTodo } from '../redux/actions/todo'
+import { connect } from 'react-redux';
+import { addTodoAsync } from '../redux/actions/todo'
 
 function AddTodoForm({ addNewTodo }) {
     const [title, setTitle] = useState('');
@@ -23,7 +23,7 @@ function AddTodoForm({ addNewTodo }) {
 }
 
 const mapDispatchToProps = dispatch => ({
-    addNewTodo: newTodo => dispatch(addTodo(newTodo))
+    addNewTodo: newTodo => dispatch(addTodoAsync(newTodo))
 })
 
 

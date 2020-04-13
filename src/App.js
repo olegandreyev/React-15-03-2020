@@ -18,6 +18,9 @@ import UseMemoExample from './tasks/week-4/hooks-examples/use-callback.example'
 
 import BlogV2 from './tasks/week-4/blog-v2/Blog';
 
+import ReduxApp from './tasks/week-5/redux-examples/App'
+
+import RedditApp from './tasks/week-6/reddit-app/RedditApp'
 
 
 function App() {

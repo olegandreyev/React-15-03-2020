@@ -8,7 +8,7 @@ export default function AlbumPage() {
     const { userId, albumId } = useParams();
     const [album, , err] = useData(`/albums/${albumId}`, {});
     const [photos, isFetching ] = useData(`/albums/${albumId}/photos`, []);
-    console.log(err)
+ 
     if (err && err.status === 404) {
         console.log(err);
         return <Redirect to={`/users/${userId}`} />
