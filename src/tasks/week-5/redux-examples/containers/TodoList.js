@@ -1,11 +1,8 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { removeTodo } from '../redux/actions/todo'
 
-function TodoList() {
-    const todos = useSelector(state => state.todos.items)
-    const isLoading = useSelector(state => state.todos.isLoading)
-    const dispatch = useDispatch();
+function TodoList({ todos, isLoading, dispatch }) {
     return (
         <div>
             {isLoading && <div>Loading..</div>}
@@ -16,5 +13,12 @@ function TodoList() {
     )
 }
 
+const mapStateToProps = state => ({
+    todos: state.todos.items,
+    isLoading: state.todos.isLoading
+})
 
-export default TodoList
+
+export default connect(
+    mapStateToProps
+)(TodoList)

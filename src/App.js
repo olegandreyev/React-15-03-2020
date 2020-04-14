@@ -26,7 +26,7 @@ import RedditApp from './tasks/week-6/reddit-app/RedditApp'
 function App() {
   return (
     <div className="App">
-        <BlogV2 />
+        <ReduxApp />
     </div>
   );
 }

@@ -27,6 +27,6 @@ const mapDispatchToProps = dispatch => ({
 })
 
 
-AddTodoForm = connect(null, mapDispatchToProps)(AddTodoForm);
+const ConnectedAddTodoForm = connect(null, mapDispatchToProps)(AddTodoForm);
 
-export default AddTodoForm;
+export default ConnectedAddTodoForm;
