@@ -62,11 +62,6 @@ app.get('/api/me', requireAuth, async (req, res) => {
     res.json(user)
 })
 
-app.get('/api/posts', requireAuth, async (req, res) => {
-    const db = await getDb();
-    db.collection('posts').find({  })
-})
-
 app.use((req, res, next) => {
     res.status(404).send({ message: 'Not Found' })
 })
