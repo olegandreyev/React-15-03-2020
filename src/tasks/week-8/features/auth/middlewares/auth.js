@@ -1,4 +1,4 @@
-import { login } from '../../auth/slices/currentUserSlice'
+import { login } from '../slices/currentUserSlice'
 import apiClient from "../../../api-client";
 
 const authMiddleware = store => next => action => {

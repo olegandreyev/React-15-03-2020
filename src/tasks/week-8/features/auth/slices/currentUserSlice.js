@@ -50,7 +50,7 @@ const currentUserSlice = createSlice({
   }
 });
 
-export const { logout, setUser } = currentUserSlice.actions;
+export const { logout } = currentUserSlice.actions;
 export { fetchCurrentUser, login }
 
 export default currentUserSlice.reducer;

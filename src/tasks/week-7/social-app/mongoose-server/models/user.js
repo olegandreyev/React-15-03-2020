@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = 'secret';
-const SALT_WORK_FACTOR = 10
+const SALT_WORK_FACTOR = 10;
 
 const UserSchema = mongoose.Schema({
     email: {
@@ -26,7 +26,7 @@ const UserSchema = mongoose.Schema({
 UserSchema.methods.signIn = function(password) {
     return bcrypt.compare(password, this.password)
         .then(() => jwt.sign({_id: this._id}, JWT_SECRET, { expiresIn: '24h' }))
-}
+};
 
 UserSchema.statics.verify = function(token) {
     return new Promise((resolve, reject) => {
@@ -37,6 +37,6 @@ UserSchema.statics.verify = function(token) {
             resolve(decoded)
         })
     })
-}
+};
 
 module.exports = mongoose.model('User', UserSchema);

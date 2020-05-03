@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { ObjectId } = require('mongodb')
+const { ObjectId } = require('mongodb');
 const { errorHandler, requireAuth } = require('./middlewares');
 const bodyParser = require('body-parser');
 const getDb = require('./db');
@@ -15,9 +15,9 @@ app.use(bodyParser.json());
 
 app.use(errorHandler);
 
-app.use(express.static(`${__dirname}/public`))
+app.use(express.static(`${__dirname}/public`));
 
-app.use(cors())
+app.use(cors());
 
 app.post('/signup', async (req, res) => {
     const newUser = req.body;
