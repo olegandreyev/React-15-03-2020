@@ -22,11 +22,13 @@ import ReduxApp from './tasks/week-5/redux-examples/App'
 
 import RedditApp from './tasks/week-6/reddit-app/RedditApp'
 
+import SocialApp from './tasks/week-8'
+
 
 function App() {
   return (
     <div className="App">
-        <RedditApp />
+        <SocialApp />
     </div>
   );
 }

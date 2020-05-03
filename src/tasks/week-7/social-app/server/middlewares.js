@@ -1,5 +1,4 @@
-
-const jwt = require('jsonwebtoken');
+const User = require('./models/user');
 
 const errorHandler = (req, res, next) => {
     res.sendHTTPError = (status, message) => {
@@ -13,17 +12,16 @@ const requireAuth = (req, res, next) => {
         return res.sendHTTPError(403, 'Token is not provided')
     }
     const token = req.headers.authorization.split(' ')[1];
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-        if (err) {
-            return res.sendHTTPError(401, err.message)
-        }
-        req.userId = decoded._id;
-        next()
-    })
-}
+    User.verify(token)
+      .then(user => {
+          req.userId = user._id;
+          next()
+      })
+      .catch(err => res.sendHTTPError(401, err.message))
+};
 
 
 module.exports = {
     errorHandler,
     requireAuth
-}
+};
