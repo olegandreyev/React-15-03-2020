@@ -1,11 +1,24 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import apiClient from "../../../api-client";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import apiClient from '../../../api-client';
+
+// First, create the thunk
+const fetchCurrentUser = createAsyncThunk(
+  'currentUser/fetchCurrentUser',
+  async (thunkAPI) => {
+    const response = await apiClient.get('/api/me');
+    return response.data
+  },
+  {
+    condition: () => !!apiClient.defaults.headers['Authorization'],
+    dispatchConditionRejection: false
+  }
+);
 
 const login = createAsyncThunk(
   'currentUser/login',
   async (credentials, thunkAPI) => {
     const response = await apiClient.post('/auth', credentials);
-    return response.data;
+    return response.data
   }
 );
 
@@ -22,21 +35,22 @@ const currentUserSlice = createSlice({
     }
   },
   extraReducers: {
-    [login.pending]: (state) => {
-      state.isLoading = true
+    // Add reducers for additional action types here, and handle loading state as needed
+    [fetchCurrentUser.pending]: (state) => {
+      state.loading = true
     },
-    [login.fulfilled] : (state, action) => {
+    [fetchCurrentUser.fulfilled]: (state, action) => {
+      // Add user to the state array
+      state.user = action.payload;
+    },
+    [login.fulfilled]: (state, action) => {
       state.user = action.payload.user;
-      state.isLoading = false;
-    }
+    },
+    [fetchCurrentUser.rejected]: () => ({ user: null, isLoading: false })
   }
 });
 
 export const { logout } = currentUserSlice.actions;
-
-export { login }
+export { fetchCurrentUser, login }
 
 export default currentUserSlice.reducer;
-
-
-

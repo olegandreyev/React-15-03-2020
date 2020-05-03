@@ -1,19 +1,15 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
-import authMiddleware from "./features/auth/middlewares/auth";
-import currentUser from './features/auth/slices/currentUserSlice';
+import currentUser from './features/auth/slices/currentUserSlice'
+import authMiddleware from './features/auth/middlewares/auth'
 
-const middleware = [
-  ...getDefaultMiddleware(),
-  authMiddleware
-];
+const middleware = [...getDefaultMiddleware(), authMiddleware];
 
 const store = configureStore({
-  reducer: {
-    currentUser
-  },
-  devTools: true,
-  middleware,
+    reducer: {
+        currentUser
+    },
+    devTools: true,
+    middleware
 });
 
 export default store;
-

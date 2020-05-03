@@ -1,14 +1,12 @@
-import React from 'react';
+import React from 'react'
+import store from './configureStore'
 import { Provider } from 'react-redux'
-import SocialApp from "./SocialApp";
-import store from './configureStore';
+import SocialApp from './SocialApp'
 
-function App() {
-  return (
-    <Provider store={store}>
-      <SocialApp />
-    </Provider>
-  );
+export default function App() {
+    return (
+        <Provider store={store}>
+            <SocialApp />
+        </Provider>
+    )
 }
-
-export default App;
