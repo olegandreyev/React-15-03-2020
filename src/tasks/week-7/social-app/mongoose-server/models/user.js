@@ -20,7 +20,7 @@ const UserSchema = mongoose.Schema({
     first_name: String,
     last_name: String,
     age: Number
-})
+});
 
 
 UserSchema.methods.signIn = function(password) {
@@ -37,6 +37,12 @@ UserSchema.statics.verify = function(token) {
             resolve(decoded)
         })
     })
+};
+
+UserSchema.methods.toJSON = function() {
+    const obj = this.toObject();
+    delete obj.password;
+    return obj;
 };
 
 module.exports = mongoose.model('User', UserSchema);

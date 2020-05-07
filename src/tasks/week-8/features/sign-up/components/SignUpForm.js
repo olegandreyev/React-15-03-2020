@@ -79,7 +79,7 @@ const warn = values => {
 };
 
 const asyncValidate = async (values /*, dispatch */) => {
-  const response = await apiClient.get('/api/check-user', { params: { email: values.email } });
+  const response = await apiClient.get('/signup/check-user', { params: { email: values.email } });
   if (response.data.isUserExist) throw { email: 'This email is already taken' };
 };
 

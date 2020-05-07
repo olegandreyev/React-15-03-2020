@@ -5,7 +5,7 @@ import apiClient from '../../../api-client';
 const fetchCurrentUser = createAsyncThunk(
   'currentUser/fetchCurrentUser',
   async (thunkAPI) => {
-    const response = await apiClient.get('/api/me');
+    const response = await apiClient.get('/api/users/me');
     return response.data
   },
   {
