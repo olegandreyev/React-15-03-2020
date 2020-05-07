@@ -1,4 +1,4 @@
-import { signIn } from '../slices/currentUserSlice'
+import { signIn, logout } from '../slices/currentUserSlice'
 import apiClient from "../../../api-client";
 
 const authMiddleware = store => next => action => {
@@ -7,6 +7,11 @@ const authMiddleware = store => next => action => {
         localStorage.setItem('authToken', authToken);
         apiClient.defaults.headers['Authorization'] = `Bearer ${authToken}`;
     }
+    if (action.type === logout.toString()) {
+        localStorage.clear();
+        delete apiClient.defaults.headers['Authorization'];
+    }
+
     next(action);
 };
 
