@@ -2,11 +2,11 @@ import React, { useCallback } from 'react';
 import { useLocation, useHistory } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 import { signIn } from "../slices/currentUserSlice";
-import LoginForm from '../components/LoginForm';
+import LoginForm from '../components/SignInForm';
 import apiClient from "../../../api-client";
 import { Container } from "semantic-ui-react";
 
-function LoginPage() {
+function SignInPage() {
   const location = useLocation();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -25,4 +25,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default SignInPage;

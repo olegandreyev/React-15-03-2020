@@ -1,11 +1,11 @@
 import React from 'react';
 import { Form, Button, Input } from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form'
-import './LoginForm.css';
+import './SignInForm.css';
 
 
-const LoginForm = ({ handleSubmit, pristine, submitting }) => (
-  <Form className='login-form' onSubmit={handleSubmit}>
+const SignInForm = ({ handleSubmit, pristine, submitting }) => (
+  <Form className='sign-in-form' onSubmit={handleSubmit}>
     <Form.Field>
       <label>Email</label>
       <Field name='email' component={Input} type='text' placeholder='John.Doe@gmail.com' />
@@ -20,4 +20,4 @@ const LoginForm = ({ handleSubmit, pristine, submitting }) => (
 
 export default reduxForm({
   form: 'auth'
-})(LoginForm);
+})(SignInForm);
