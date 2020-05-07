@@ -36,6 +36,12 @@ app.post('/auth', async (req, res) => {
     res.send({ authToken, user })
 })
 
+app.get('/api/check-user', async (req, res) => {
+    const { email } = req.query;
+    const user = await User.findOne({ email });
+    res.send({ isUserExist: !!user })
+});
+
 app.get('/api/users', requireAuth, async (req, res) => {
     const users = await User.find({});
     res.send(users);
