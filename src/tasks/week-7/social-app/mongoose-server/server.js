@@ -30,7 +30,8 @@ app.post('/signup', async (req, res) => {
 
 app.post('/auth', async (req, res) => {
     const { email, password } = req.body;
-    const user = await User.findOne({ email }).select('+password')
+    const user = await User.findOne({ email }).select('+password');
+    if (!user) { return res.sendHTTPError(401, 'Invalid login or password') }
     const authToken = await user.signIn(password);
     res.send({ authToken, user })
 })

@@ -14,14 +14,6 @@ const fetchCurrentUser = createAsyncThunk(
   }
 );
 
-const login = createAsyncThunk(
-  'currentUser/login',
-  async (credentials, thunkAPI) => {
-    const response = await apiClient.post('/auth', credentials);
-    return response.data
-  }
-);
-
 const currentUserSlice = createSlice({
   name: 'currentUser',
   initialState: {
@@ -29,6 +21,9 @@ const currentUserSlice = createSlice({
     isLoading: false
   },
   reducers: {
+    signIn(state, action) {
+      state.user = action.payload.user;
+    },
     logout(state) {
       state.user = null;
       state.isLoading = false;
@@ -43,14 +38,11 @@ const currentUserSlice = createSlice({
       // Add user to the state array
       state.user = action.payload;
     },
-    [login.fulfilled]: (state, action) => {
-      state.user = action.payload.user;
-    },
     [fetchCurrentUser.rejected]: () => ({ user: null, isLoading: false })
   }
 });
 
-export const { logout } = currentUserSlice.actions;
-export { fetchCurrentUser, login }
+export const { logout, signIn } = currentUserSlice.actions;
+export { fetchCurrentUser }
 
 export default currentUserSlice.reducer;
