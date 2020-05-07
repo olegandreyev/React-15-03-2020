@@ -67,6 +67,17 @@ const validate = values => {
   return errors
 };
 
+const warn = values => {
+  const warnings = {}
+  if (values.age < 19) {
+    warnings.age = 'Hmm, you seem a bit young...'
+  }
+  if (values?.password?.length < 6) {
+    warnings.password = 'Password is too weak?'
+  }
+  return warnings
+};
+
 const asyncValidate = async (values /*, dispatch */) => {
   const response = await apiClient.get('/api/check-user', { params: { email: values.email } });
   if (response.data.isUserExist) throw { email: 'This email is already taken' };
@@ -75,6 +86,7 @@ const asyncValidate = async (values /*, dispatch */) => {
 export default reduxForm({
   form: 'signup',
   validate,
+  warn,
   asyncValidate,
   asyncBlurFields: ['email']
 })(SignUpForm);
