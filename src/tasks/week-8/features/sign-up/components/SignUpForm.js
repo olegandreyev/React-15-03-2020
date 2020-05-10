@@ -1,39 +1,46 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form'
-import { Button, Form } from "semantic-ui-react";
+import { Button, Form, Message } from "semantic-ui-react";
 import './SignUpForm.css'
 import TextField from "../../../components/form/Input";
 import apiClient from "../../../api-client";
 
-function SignUpForm({ handleSubmit, pristine, submitting }) {
+function SignUpForm({ handleSubmit, pristine, submitting, error }) {
   return (
-    <Form className='sign-up-form' onSubmit={handleSubmit}>
-      <Form.Field>
-        <label>Email</label>
-        <Field name='email' component={TextField} type='text' placeholder='John.Doe@gmail.com' />
-      </Form.Field>
-      <Form.Field>
-        <label>Password</label>
-        <Field name='password' component={TextField} type='password' placeholder='******' />
-      </Form.Field>
-      <Form.Field>
-        <label>Repeat Password</label>
-        <Field name='repeatPassword' component={TextField} type='password' placeholder='******' />
-      </Form.Field>
-      <Form.Field>
-        <label>First Name</label>
-        <Field name='first_name' component={TextField} type='text' placeholder='John' />
-      </Form.Field>
-      <Form.Field>
-        <label>Last Name</label>
-        <Field name='last_name' component={TextField} type='text' placeholder='Doe' />
-      </Form.Field>
-      <Form.Field>
-        <label>Age</label>
-        <Field name='age' component={TextField} type='number' placeholder='33' />
-      </Form.Field>
-      <Button disabled={pristine || submitting} type='submit'>Sign Up</Button>
-    </Form>
+    <div className='sign-up-form-wrapper'>
+      <Form className='sign-up-form' onSubmit={handleSubmit}>
+        <Form.Field>
+          <label>Email</label>
+          <Field name='email' component={TextField} type='text' placeholder='John.Doe@gmail.com' />
+        </Form.Field>
+        <Form.Field>
+          <label>Password</label>
+          <Field name='password' component={TextField} type='password' placeholder='******' />
+        </Form.Field>
+        <Form.Field>
+          <label>Repeat Password</label>
+          <Field name='repeatPassword' component={TextField} type='password' placeholder='******' />
+        </Form.Field>
+        <Form.Field>
+          <label>First Name</label>
+          <Field name='first_name' component={TextField} type='text' placeholder='John' />
+        </Form.Field>
+        <Form.Field>
+          <label>Last Name</label>
+          <Field name='last_name' component={TextField} type='text' placeholder='Doe' />
+        </Form.Field>
+        <Form.Field>
+          <label>Age</label>
+          <Field name='age' component={TextField} type='number' placeholder='33' />
+        </Form.Field>
+        <Button disabled={pristine || submitting} type='submit'>Sign Up</Button>
+      </Form>
+      {error &&
+      <Message attached='bottom' error>
+        {error}
+      </Message>
+      }
+    </div>
   );
 }
 

@@ -2,6 +2,7 @@ import React, { useCallback, useState }  from 'react';
 import { Container, Message } from "semantic-ui-react";
 import SignUpForm from "../components/SignUpForm";
 import apiClient from "../../../api-client";
+import { SubmissionError } from "redux-form";
 
 function SignUpPage() {
   const [isCompleted, setIsCompleted] = useState(false);
@@ -11,6 +12,8 @@ function SignUpPage() {
     apiClient.post('/signup', values).then(() => {
       setIsCompleted(true)
       setRegisteredEmail(values.email)
+    }).catch(err => {
+      throw new SubmissionError({ _error: err.response.data.message })
     }),
     []);
 
