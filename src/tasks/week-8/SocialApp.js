@@ -8,7 +8,6 @@ import { Container, Header } from "semantic-ui-react";
 import SignInPage from "./features/auth/containers/SignInPage";
 import HomePage from "./features/home/containers/HomePage";
 import NotFoundPage from "./components/404";
-import SignUpPage from "./features/sign-up/containers/SignUpPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { getCurrentUser } from "./features/auth/selectors/currentUser";
 import NotAuthorizedNavbar from "./components/NotAuthorizedNavbar";
@@ -42,9 +41,6 @@ function SocialApp() {
           </Route>
           <Route path='/sign-in' exact>
             <SignInPage />
-          </Route>
-          <Route path='/sign-up' exact>
-            <SignUpPage />
           </Route>
           <ProtectedRoute path='/posts' exact>
             <PostsPage />
