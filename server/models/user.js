@@ -51,6 +51,7 @@ UserSchema.statics.verify = function(token) {
 UserSchema.methods.toJSON = function() {
     const obj = this.toObject();
     delete obj.password;
+    delete obj.verify_email_token;
     return obj;
 };
 

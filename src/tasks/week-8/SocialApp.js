@@ -14,6 +14,7 @@ import NotAuthorizedNavbar from "./components/NotAuthorizedNavbar";
 import AuthorizedNavbar from "./components/AuthorizedNavbar";
 import PostsPage from "./features/posts/containers/PostsPage";
 import UsersPage from "./features/users/containers/UsersPage";
+import SignUpPage from "./features/signup/containers/SignUpPage";
 
 function SocialApp() {
   const currentUser = useSelector(getCurrentUser);
@@ -41,6 +42,9 @@ function SocialApp() {
           </Route>
           <Route path='/sign-in' exact>
             <SignInPage />
+          </Route>
+          <Route path='/sign-up' exact>
+            <SignUpPage />
           </Route>
           <ProtectedRoute path='/posts' exact>
             <PostsPage />

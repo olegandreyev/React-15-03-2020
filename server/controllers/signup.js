@@ -35,10 +35,13 @@ router.get('/check-user', async (req, res) => {
 
 router.get('/verify', async (req, res) => {
   const token = req.query.token;
-  await User.findOneAndUpdate({ verify_email_token: token }, {
-    is_verified: true,
-    verify_email_token: null
-  });
+  const result = await User.verify(token);
+  if (result) {
+    await User.findByIdAndUpdate(result._id, {
+      is_verified: true,
+      verify_email_token: null
+    });
+  }
   res.redirect('/');
 });
 
