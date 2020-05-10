@@ -8,6 +8,9 @@ router.post('/', async (req, res) => {
   const user = await User.findOne({ email }).select('+password');
   if (!user) { return res.sendHTTPError(401, 'Invalid email or password') }
   const authToken = await user.signIn(password);
+  if (!authToken) {
+    return res.sendHTTPError(401, 'Invalid email or password')
+  }
   res.send({ authToken, user })
 });
 
