@@ -5,6 +5,7 @@ import { signIn } from "../slices/currentUserSlice";
 import LoginForm from '../components/SignInForm';
 import apiClient from "../../../api-client";
 import { Container } from "semantic-ui-react";
+import { SubmissionError } from "redux-form";
 
 function SignInPage() {
   const location = useLocation();
@@ -15,7 +16,10 @@ function SignInPage() {
   const submitForm = useCallback(credentials => {
     return apiClient.post('/auth', credentials)
       .then(response => dispatch(signIn(response.data)))
-      .then(() => history.replace(from));
+      .then(() => history.replace(from))
+      .catch(err => {
+        throw new SubmissionError({ _error: err.response.data.message })
+      })
   }, []);
 
   return (

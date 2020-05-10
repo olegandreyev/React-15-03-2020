@@ -1,5 +1,8 @@
 
+.sign-in-form-wrapper {
+    width: 400px;
+}
 
 .sign-in-form {
-    width: 400px;
+    margin-bottom: 20px;
 }
