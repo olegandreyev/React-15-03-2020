@@ -17,7 +17,7 @@ const commentsController = require('./controllers/comments');
 const app = express();
 app.use(bodyParser.json());
 app.use(errorHandler);
-app.use(express.static(`${__dirname}/../public`));
+app.use(express.static(`${__dirname}/../build`));
 app.use(cors());
 
 app.use('/auth', authController);
