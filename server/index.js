@@ -2,6 +2,7 @@ const express = require('express');
 require('express-async-errors');
 require('./db');
 const cors = require('cors');
+const path = require('path');
 const { errorHandler, requireAuth } = require('./middlewares');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000;
@@ -30,8 +31,8 @@ api.use('/comments', commentsController);
 
 app.use('/api', requireAuth, api);
 
-app.use((req, res, next) => {
-    res.status(404).send({ message: 'Not Found' })
+app.get('*', function(req, res) {
+    res.sendFile('index.html', {root: path.join(__dirname, '../build/')});
 });
 
 app.use((err, req, res, next) => {

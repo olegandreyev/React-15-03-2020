@@ -8,13 +8,13 @@ import { Container, Header } from "semantic-ui-react";
 import SignInPage from "./features/auth/containers/SignInPage";
 import HomePage from "./features/home/containers/HomePage";
 import NotFoundPage from "./components/404";
-import SignUpPage from "./features/sign-up/containers/SignUpPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { getCurrentUser } from "./features/auth/selectors/currentUser";
 import NotAuthorizedNavbar from "./components/NotAuthorizedNavbar";
 import AuthorizedNavbar from "./components/AuthorizedNavbar";
 import PostsPage from "./features/posts/containers/PostsPage";
 import UsersPage from "./features/users/containers/UsersPage";
+import SignUpPage from "./features/signup/containers/SignUpPage";
 
 function SocialApp() {
   const currentUser = useSelector(getCurrentUser);
