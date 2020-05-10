@@ -4,9 +4,7 @@ import { logout } from './features/auth/slices/currentUserSlice'
 
 const authToken = localStorage.getItem('authToken');
 
-const apiClient = axios.create({
-    baseURL: 'http://localhost:5000/'
-});
+const apiClient = axios.create();
 
 if (authToken) {
     apiClient.defaults.headers['Authorization'] = `Bearer ${authToken}`;
